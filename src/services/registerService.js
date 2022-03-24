@@ -3,7 +3,6 @@ const { createVmsDepartment, createSkeduCompany, createLmsCompany, createSkeduUs
 
 const createCompanyService = async (body) => {
   try {
-    console.log('res', body)
     const response1 = createSkeduCompany(body);
     if(!response1) {
       throw Error('No response for Skedu');

@@ -36,7 +36,8 @@ const createSkeduCompany = async (body) => {
   try {
     const result =  await axios.post(
       "https://appps.azure-api.net/vms/create-company-account", body, config.config.sub_key)
-    console.log(result)
+    
+    console.log('res', result)
   } catch (error) {
     console.log(error.message);
   }
