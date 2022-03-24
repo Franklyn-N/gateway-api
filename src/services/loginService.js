@@ -2,15 +2,15 @@ const { fixmeetLogin, skeduLogin, lmsLogin, loginVmsCompany} = require("../utils
 
 const loginUser = async (body) => {
   try {
-    const response1 = skeduLogin(body);
+    const response1 = await skeduLogin(body);
     if(!response1.success) {
       throw Error(`Skedu Error: ${response1.data}`);
     } 
-    const response2 = fixmeetLogin(body);
+    const response2 = await fixmeetLogin(body);
     if(!response2.success) {
       throw Error(`Fixmeet Error: ${response2.data}`);
     }
-    const response3 = lmsLogin(body);
+    const response3 = await lmsLogin(body);
     if(!response3.success) {
       throw Error(`LMS Error: ${response3.data}`);
     }
@@ -27,7 +27,7 @@ const loginUser = async (body) => {
 
 const loginCompany = async (body) => {
   try {
-    const response = loginVmsCompany(body);
+    const response = await loginVmsCompany(body);
     if(!response.success) {
       throw Error(`Skedu Error: ${response.data}`);
     }

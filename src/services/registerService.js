@@ -24,7 +24,7 @@ const createCompanyService = async (body) => {
 
 const createSkeduDeptService = async (body) => {
   try {
-    const response = createVmsDepartment(body);
+    const response = await createVmsDepartment(body);
     if(!response.success) {
       throw Error(`Skedu Error: ${response.data}`);
     } 
@@ -39,11 +39,11 @@ const createSkeduDeptService = async (body) => {
 
 const createUserService = async (body) => {
   try {
-    const response1 = createSkeduUser(body);
+    const response1 = await createSkeduUser(body);
     if(!response1.success) {
       throw Error(`Skedu Error: ${response1.data}`);
     } 
-    const response2 = createLmsUser(body);
+    const response2 = await createLmsUser(body);
     if(!response2.success) {
       throw Error(`LMS Error: ${response2.data}`);
     }
