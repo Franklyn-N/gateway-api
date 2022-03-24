@@ -34,23 +34,34 @@ const lmsLogin = async (body) => {
 
 const createSkeduCompany = async (body) => {
   try {
-    const result =  await axios.post(
-      "https://appps.azure-api.net/vms/create-company-account", body, config.config.sub_key)
-    
-    console.log('res', result)
+    const result = await axios({
+      method: 'post',
+      url: 'https://appps.azure-api.net/vms/create-company-account',
+      data: body,
+      headers: {"Ocp-Apim-Subscription-Key": config.config.sub_key }
+    })
+
+    return {success: true, data: result.data}
   } catch (error) {
-    console.log(error.message);
+    return {success: false, data: error.message}
   }
 };
 
 
 const createLmsCompany = async (body) => {
   try {
-    const result =  await axios.post(
-      "https://appps.azure-api.net/lms/company", body, config.config.sub_key)
-    console.log(result)
+    const result = await axios({
+      method: 'post',
+      url: 'https://appps.azure-api.net/lms/company',
+      data: body,
+      headers: {
+        "Ocp-Apim-Subscription-Key": config.config.sub_key,
+      }
+    })
+
+    return {success: true, data: result.data}
   } catch (error) {
-    console.log(error.message);
+    return {success: false, data: error.message}
   }
 };
 

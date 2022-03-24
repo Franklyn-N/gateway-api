@@ -12,7 +12,6 @@ const createCompanyGatewayController = async (req, res) => {
     const response = await createCompanyService(req.body)
     return res.status(201).json({ success: true, data: response })
   } catch (err) {
-    console.log('err', err)
     res.status(400).json({success: false, data: err.message})
   }
 };

@@ -3,20 +3,21 @@ const { createVmsDepartment, createSkeduCompany, createLmsCompany, createSkeduUs
 
 const createCompanyService = async (body) => {
   try {
-    const response1 = createSkeduCompany(body);
-    if(!response1) {
-      throw Error('No response for Skedu');
+    const response1 = await createSkeduCompany(body);
+    if(!response1.success) {
+      throw Error(`Skedu Error: ${response1.data}`);
     } 
-    const response2 = createLmsCompany(body);
-    if(!response2) {
-      throw Error('No response for Fixmeet');
+    const response2 = await createLmsCompany(body);
+    if(!response2.success) {
+      throw Error(`LMS Error: ${response2.data}`);
     }
+
     return({
       SkeduDeets: response1,
       LMSDeets: response2
     }) 
   } catch (error) {
-    console.log(error)
+    throw error
   }
 };
 
