@@ -3,16 +3,16 @@ const { fixmeetLogin, skeduLogin, lmsLogin, loginVmsCompany} = require("../utils
 const loginUser = async (body) => {
   try {
     const response1 = skeduLogin(body);
-    if(!response1) {
-      throw Error('No response for Skedu');
+    if(!response1.success) {
+      throw Error(`Skedu Error: ${response1.data}`);
     } 
     const response2 = fixmeetLogin(body);
-    if(!response2) {
-      throw Error('No response for Fixmeet');
+    if(!response2.success) {
+      throw Error(`Fixmeet Error: ${response2.data}`);
     }
     const response3 = lmsLogin(body);
-    if(!response3) {
-      throw Error('No response for LMS');
+    if(!response3.success) {
+      throw Error(`LMS Error: ${response3.data}`);
     }
     return({
       SkeduDeets: response1,
@@ -20,7 +20,7 @@ const loginUser = async (body) => {
       LMSDeets: response3
     }) 
   } catch (error) {
-    console.log(error.message)
+    throw error;
   }
 };
 
@@ -28,14 +28,14 @@ const loginUser = async (body) => {
 const loginCompany = async (body) => {
   try {
     const response = loginVmsCompany(body);
-    if(!response) {
-      throw Error('No response for Skedu');
-    } 
+    if(!response.success) {
+      throw Error(`Skedu Error: ${response.data}`);
+    }
     return({
       SkeduDeets: response,
     }) 
   } catch (error) {
-    console.log(error.message)
+    throw error;
   }
 };
 

@@ -1,17 +1,21 @@
-const { loginUser, loginCompany } = require('../services/loginService.js');
-
+const { loginUser, loginCompany } = require("../services/loginService.js");
 
 const userLoginGatewayController = async (req, res) => {
-    return await loginUser(req.body, result => {
-        return res.status(200).json({ result })
-    })
+  try {
+    const response = await loginUser(req.body);
+    return res.status(201).json({ success: true, data: response });
+  } catch (err) {
+    res.status(400).json({ success: false, data: err.message });
+  }
 };
 
 const companyLoginGatewayController = async (req, res) => {
-  return await loginCompany(req.body, result => {
-      return res.status(200).json({ result })
-  })
+  try {
+    const response = await loginCompany(req.body);
+    return res.status(201).json({ success: true, data: response });
+  } catch (err) {
+    res.status(400).json({ success: false, data: err.message });
+  }
 };
 
-module.exports = { userLoginGatewayController, companyLoginGatewayController};
-
+module.exports = { userLoginGatewayController, companyLoginGatewayController };

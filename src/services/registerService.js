@@ -25,14 +25,14 @@ const createCompanyService = async (body) => {
 const createSkeduDeptService = async (body) => {
   try {
     const response = createVmsDepartment(body);
-    if(!response) {
-      throw Error('No response for Skedu');
+    if(!response.success) {
+      throw Error(`Skedu Error: ${response.data}`);
     } 
     return({
       SkeduDeets: response,
     }) 
   } catch (error) {
-    console.log(error.message);
+    throw error;
   }
 };
 
@@ -40,19 +40,19 @@ const createSkeduDeptService = async (body) => {
 const createUserService = async (body) => {
   try {
     const response1 = createSkeduUser(body);
-    if(!response1) {
-      throw Error('No response for Skedu');
+    if(!response1.success) {
+      throw Error(`Skedu Error: ${response1.data}`);
     } 
     const response2 = createLmsUser(body);
-    if(!response2) {
-      throw Error('No response for LMS');
-    } 
+    if(!response2.success) {
+      throw Error(`LMS Error: ${response2.data}`);
+    }
     return({
       SkeduDeets: response1,
       LMSDeets: response2
     }) 
   } catch (error) {
-    console.log(error.message);
+    throw error;
   }
 };
 
