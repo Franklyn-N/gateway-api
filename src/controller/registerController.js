@@ -8,9 +8,13 @@ const createDeptGatewayController = async (req, res) => {
 };
 
 const createCompanyGatewayController = async (req, res) => {
-  return await createCompanyService(req.body, result => {
-      return res.status(result.statusCode).json({ result })
-  })
+  try {
+    const response = await createCompanyService(req.body)
+    return res.status(result.statusCode).json({ success: true, data: response })
+  } catch (err) {
+    console.log('err', err)
+    res.status(400).json({success: false, data: err.message})
+  }
 };
 
 

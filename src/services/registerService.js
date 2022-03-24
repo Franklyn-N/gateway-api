@@ -3,6 +3,7 @@ const { createVmsDepartment, createSkeduCompany, createLmsCompany, createSkeduUs
 
 const createCompanyService = async (body) => {
   try {
+    console.log('res', body)
     const response1 = createSkeduCompany(body);
     if(!response1) {
       throw Error('No response for Skedu');
@@ -16,7 +17,7 @@ const createCompanyService = async (body) => {
       LMSDeets: response2
     }) 
   } catch (error) {
-    console.log(error.message)
+    console.log(error)
   }
 };
 
