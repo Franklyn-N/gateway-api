@@ -1,13 +1,12 @@
 {
   "name": "microservice-gateway",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "engines": {
     "node": "14.17.4"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "node src/app.js",
     "prebuild": "rimraf build",
     "dev": "nodemon"
   },
@@ -35,5 +34,15 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Franklyn-N/gateway-api.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Franklyn-N/gateway-api/issues"
+  },
+  "homepage": "https://github.com/Franklyn-N/gateway-api#readme",
+  "description": ""
 }
