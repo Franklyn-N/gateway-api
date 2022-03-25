@@ -2,11 +2,12 @@ const http = require('http');
 const express = require('express');
 const userRouter = require("./routes/index.js");
 const { config } = require('./config/config.js');
-
+const compression = require('compression');
 
 const app = express();
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(compression());
 
 app.use('/', userRouter);
 
